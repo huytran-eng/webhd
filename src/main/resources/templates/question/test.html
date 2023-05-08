@@ -1,0 +1,246 @@
+<!--<form action="#" class="form-control form-control-sm" th:action="'new/add'" th:object="${job}"-->
+<!--      method="post">-->
+<!--    &lt;!&ndash; Custom Form Start &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-6">-->
+<!--            <div class="card">-->
+<!--                <div class="card-header bg-secondary text-white">-->
+<!--                    <a data-toggle="collapse" href="#collapse-example" aria-expanded="true"-->
+<!--                       aria-controls="collapse-example" id="heading-example" class="d-block">-->
+<!--                        <i class="fa fa-chevron-down pull-right"></i>-->
+<!--                        Job Info-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div id="collapse-example" class="collapse show"-->
+<!--                     aria-labelledby="heading-example">-->
+<!--                    <div class="card-body">-->
+<!--                        <div class="form-group row">-->
+<!--                            <label for="description" class="col-2 col-form-label">Description</label>-->
+<!--                            <div class="col-10">-->
+<!--                                                        <textarea th:field="*{description}" class="form-control"-->
+<!--                                                                  type="text"-->
+<!--                                                                  id="description"></textarea>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="form-group row">-->
+<!--                            <label for="dateInput" class="col-2 col-form-label">Date</label>-->
+<!--                            <div class="col-10">-->
+<!--                                <input th:field="*{date}" class="form-control" type="date"-->
+<!--                                       id="dateInput">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6">-->
+<!--            <div class="card">-->
+<!--                <div class="card-header bg-secondary text-white">-->
+<!--                    Labour-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="repairTime" class="col-2 col-form-label">Time</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" id="repairTime" th:field="*{repairTime}"-->
+<!--                                   type="number"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="rate" class="col-2 col-form-label">Rate</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input th:field="*{rate}" class="form-control" type="text" value=""-->
+<!--                                   id="rate">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="total" class="col-2 col-form-label">Total</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" id="total" th:field="*{total}" type="text"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-6">-->
+<!--            <div class="card">-->
+<!--                <div class="card-header bg-secondary text-white">-->
+<!--                    Car Info-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="reg" class="col-2 col-form-label">Reg</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" id="reg" th:field="*{car.reg}" type="text"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="make" class="col-2 col-form-label">Make</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" id="make" th:field="*{car.make}" type="text"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="model" class="col-2 col-form-label">Model</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" id="model" th:field="*{car.model}" type="text"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="year" class="col-2 col-form-label">Year</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" id="year" th:field="*{car.year}" type="text"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="mileage" class="col-2 col-form-label">Mileage</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" id="mileage" th:field="*{car.mileage}"-->
+<!--                                   type="text"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="color" class="col-2 col-form-label">Color</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" id="color" th:field="*{car.color}" type="text"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6">-->
+<!--            <div class="card">-->
+<!--                <div class="card-header bg-secondary text-white">-->
+<!--                    Parts-->
+<!--                    <input type="radio" class="radio-gr">-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <div class="form-group row ">-->
+<!--                        <label for="partName" class="col-2 col-form-label">Name</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control"-->
+<!--                                   id="partName"-->
+<!--                                   type="text"-->
+<!--                                   value="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group row">-->
+<!--                        <label for="quantity" class="col-2 col-form-label">Quantity</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" type="number" value="" id="quantity">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="invoiceNumber" class="col-2 col-form-label">Invoice Number</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" type="text" value="" id="invoiceNumber">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+
+<!--                        <label for="price" class="col-2 col-form-label">Price</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" type="text" value="" id="price">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="supplier" class="col-2 col-form-label">Supplier</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" type="text" value="" id="supplier">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="brand" class="col-2 col-form-label">Brand</label>-->
+<!--                        <div class="col-10">-->
+<!--                            <input class="form-control" type="text" value="" id="brand">-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--                <div class="btn-group ">-->
+
+<!--                    <button type="button" class="btn-warning" data-toggle="collapse"-->
+<!--                            data-target="#collapse1">-->
+<!--                        Parts list-->
+<!--                        <i class="nav-icon fa fa-arrow-circle-down"></i>-->
+<!--                    </button>-->
+<!--                    <button class="btn-success" th:onclick="'javascript:addToPartsList();'"-->
+<!--                            type="button">-->
+<!--                        Add to list-->
+<!--                        <i class="nav-icon fa fa-plus-circle"></i>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div id="collapse1" class="panel-collapse collapse">-->
+<!--                    <p>hello</p>-->
+<!--                    <div class="form-group row " id="partsListContainer">-->
+<!--                        <div class="card-body" th:each="part, itemStat :*{parts}">-->
+<!--                            <input class="form-control"-->
+<!--                                   th:field="*{parts[__${itemStat.index}__].name}"-->
+<!--                                   type="text" value=""/>-->
+<!--                            <input class="form-control"-->
+<!--                                   th:field="*{parts[__${itemStat.index}__].quantity}"-->
+<!--                                   type="text" value=""/>-->
+<!--                            <input class="form-control"-->
+<!--                                   th:field="*{parts[__${itemStat.index}__].invoiceNumber}"-->
+<!--                                   type="text" value=""/>-->
+<!--                            <input class="form-control"-->
+<!--                                   th:field="*{parts[__${itemStat.index}__].price}"-->
+<!--                                   type="text" value=""/>-->
+<!--                            <input class="form-control"-->
+<!--                                   th:field="*{parts[__${itemStat.index}__].supplier}"-->
+<!--                                   type="text" value=""/>-->
+<!--                            <input class="form-control"-->
+<!--                                   th:field="*{parts[__${itemStat.index}__].brand}"-->
+<!--                                   type="text" value=""/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="col-sm-6">-->
+<!--        <div class="card">-->
+<!--            <div class="card-header bg-secondary text-white">-->
+<!--                Customer-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--                <div class="form-group row">-->
+<!--                    <label for="customerName" class="col-2 col-form-label">Name</label>-->
+<!--                    <div class="col-10">-->
+<!--                        <input class="form-control" id="customerName" th:field="*{customer.name}"-->
+<!--                               type="text"-->
+<!--                               value="">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group row">-->
+<!--                    <label for="customerSurname" class="col-2 col-form-label">Surname</label>-->
+<!--                    <div class="col-10">-->
+<!--                        <input class="form-control" id="customerSurname" th:field="*{customer.surname}"-->
+<!--                               type="text"-->
+<!--                               value="">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button type="reset" value="Reset" class="btn btn-danger">Reset form-->
+<!--        </button>-->
+<!--        <button type="submit" value="Submit" class="btn btn-success">Add new job</button>-->
+<!--    </div>-->
+<!--</form>-->
