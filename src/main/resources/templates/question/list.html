@@ -15,9 +15,10 @@
 <header>
     <div th:replace="~{fragments/navbar}"></div>
 </header>
-<main class="d-flex flex-column flex-grow-1">
-    <div class="container-fluid d-flex flex-column flex-grow-1">
-        <div class="row d-flex flex-grow-1">
+<main class=" container">
+    <div class=" col align-self-center">
+
+        <div >
 
             <div class="col-md-10 col-lg-8 col-xl-7 bg-white border p-0 h-auto">
                 <div class="content h-auto">
@@ -44,16 +45,7 @@
                                                 value="VOTES">
                                             Most Votes
                                         </button>
-<!--                                        <button class="btn btn-outline-secondary"-->
-<!--                                                type="button"-->
-<!--                                                th:onclick="'window.location.href=\'' + @{/questions(sort='LastActive')} + '\''">-->
-<!--                                            Active-->
-<!--                                        </button>-->
-<!--                                        <button class="btn btn-outline-secondary"-->
-<!--                                                type="button"-->
-<!--                                                th:onclick="'window.location.href=\'' + @{/questions(sort='MostVotes')} + '\''">-->
-<!--                                            Votes-->
-<!--                                        </button>-->
+
                                     </div>
 
                                 </div>
@@ -65,16 +57,14 @@
 
                     <div class="d-flex float-none question-info px-2 py-3 border-bottom"
                          th:each="question : ${questions}">
-
                         <div class="stats-container text-muted text-center ml-1 mr-3">
                             <div class="stats">
                                 <div class="vote">
                                     <div class="votes mb-2 p-1">
-                                            <span class="vote-count-post h5 font-weight-bold">
-                                                diem
-                                                <!--                                                  th:text="${question.getRating()}">-->
-                                            </span>
-                                        <div class="viewcount small">votes</div>
+                                              <span id="rating"
+                                                    th:with="rating=${question.upvote.size +question.downvote.size}"
+                                                    th:text="${rating}"
+                                                    class="question_rating text-muted h5 font-weight-bold"></span>
                                     </div>
                                 </div>
                                 <!--                                    <div class="status unanswered mb-2 p-1"-->
@@ -87,7 +77,7 @@
                                 <!--                                        <div class="small">answers</div>-->
                                 <!--                                    </div>-->
                             </div>
-                            <div class="views small">4 views</div>
+                            <div class="views small" th:text="${question.getViewsNo}+' views'"></div>
                         </div>
                         <div class="question-summary w-100">
                             <div class="mb-2">
@@ -124,10 +114,12 @@
                 <div th:if="${pagequestions.getTotalPages()  > 1}" class="pagination float-right mr-4 my-4">
                     <nav aria-label="Questions per page">
                         <ul class="pagination pagination-sm mb-0">
+
                             <li class="page-item"
                                 th:each="i: ${#numbers.sequence(1, pagequestions.getTotalPages() )}"
-                                th:classappend="${pagequestions.getSize() == i} ? active">
-                                <a class="page-link" th:href="@{''(page=${i})}" th:text="${i}"></a>
+                                th:classappend="${pagequestions.number == i-1} ? active">
+                                <a  th:if="${sort==null}" class="page-link" th:href="@{''(page=${i})}" th:text="${i}"></a>
+                                <a  th:unless="${sort==null}" class="page-link" th:href="@{''(page=${i},sort=${sort})}" th:text="${i}"></a>
                             </li>
                         </ul>
                     </nav>

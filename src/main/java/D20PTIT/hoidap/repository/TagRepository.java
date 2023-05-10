@@ -26,7 +26,7 @@ public interface TagRepository extends JpaRepository<Tag, String> {
 //
 //    @Query(value = " SELECT t from Tag t left join fetch  t.questions",
 //            countQuery = " SELECT COUNT(t) from Tag t")
-//    Page<Tag> findAll(Pageable pageable);
+    Page<Tag> findAll(Pageable pageable);
 
     Optional<Tag> findByTagName(String tagName);
 }

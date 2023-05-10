@@ -17,7 +17,7 @@ public class Notification {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String answerId;
+    private String notificationId;
 
     private boolean seen;
 

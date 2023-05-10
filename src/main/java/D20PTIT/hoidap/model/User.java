@@ -1,5 +1,6 @@
 package D20PTIT.hoidap.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -15,7 +16,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="user")
 @AllArgsConstructor
@@ -48,6 +50,12 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Position position;
 
+    @OneToMany(mappedBy = "user", cascade = {
+            CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH},fetch = FetchType.LAZY)
+
+    private List<Question> questions;
+
     // cho người dùng role
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -55,6 +63,7 @@ public class User implements UserDetails {
         list.add(new SimpleGrantedAuthority("ROLE_" + position));
         return list;
     }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

@@ -18,6 +18,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/tag")
@@ -51,22 +52,16 @@ public class TagController {
     @GetMapping
     public String findAll(Model model,
                           @RequestParam(value = "sort", required = false) String sort,
-                          @RequestParam(defaultValue = "0") int page
+                          @RequestParam(defaultValue = "1") int page
     ) {
+        Pageable paging = PageRequest.of(page - 1, 3, Sort.by("questions").descending());
+        List<Tag> tags;
+        Page<Tag> pageTag = tagRepo.findAll(paging);
+        tags = pageTag.getContent();
+        Set<Question> questions=tags.get(0).getQuestions();
 
-        Pageable paging = null;
-
-        if (sort == null) {
-            paging = PageRequest.of(page == 0 ? page : page - 1, 5);
-        }
-            List<Tag> tags;
-            Page<Tag> pageTag = tagRepo.findAll(paging);
-            tags = pageTag.getContent();
-            System.out.println(tags);
-            System.out.println(pageTag);
-            model.addAttribute("tags", tags);
-            model.addAttribute("pagetags", pageTag);
-
-            return "tag/list";
-        }
+        model.addAttribute("tags", tags);
+        model.addAttribute("pagetags", pageTag);
+        return "tag/list";
     }
+}

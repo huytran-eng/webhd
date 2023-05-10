@@ -11,27 +11,22 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name="tag")
+@Table(name = "tag")
 @AllArgsConstructor
-@NoArgsConstructor(force=true)
+@NoArgsConstructor(force = true)
 public class Tag {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String tagId;
-    @Length(min = 3, max = 10,message = "độ dài không dưới 5 và quá 10 kí tự")
+    @Length(min = 3, max = 10, message = "độ dài không dưới 5 và quá 10 kí tự")
     private String tagName;
     @NotBlank(message = "Không được để trống phần mô tả")
     private String tagDescription;
 
-//    @ManyToMany(cascade = {
-//            CascadeType.MERGE, CascadeType.PERSIST,
-//            CascadeType.DETACH, CascadeType.REFRESH})
-//    @JoinTable(
-//            name = "question_tag",
-//            joinColumns = @JoinColumn(name = "tag_id"),
-//            inverseJoinColumns = @JoinColumn(name = "question_id"))
-//    private Set<Question> questions;
+    @ManyToMany(mappedBy = "tags")
+    private Set<Question> questions;
 }

@@ -15,9 +15,9 @@
 <header>
     <div th:replace="~{fragments/navbar}"></div>
 </header>
-<main class="d-flex flex-column flex-grow-1">
-    <div class="container-fluid d-flex flex-column flex-grow-1">
-        <div class="row d-flex flex-grow-1">
+<main class=" container">
+    <div class=" col-10 align-self-center">
+        <div >
 
             <div class="col-md-10 col-lg-8 col-xl-7 bg-white border p-0 h-auto">
                 <div class="content h-auto">
@@ -83,7 +83,8 @@
                         <ul class="pagination pagination-sm mb-0">
                             <li class="page-item"
                                 th:each="i: ${#numbers.sequence(1, pagequestions.getTotalPages() )}"
-                                th:classappend="${pagequestions.getSize() == i} ? active">
+                                th:classappend="${pagequestions.number == i-1} ? active">
+
                                 <a class="page-link" th:href="@{''(page=${i})}" th:text="${i}"></a>
                             </li>
                         </ul>

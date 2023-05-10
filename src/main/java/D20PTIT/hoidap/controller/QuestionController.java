@@ -41,26 +41,25 @@ public class QuestionController {
     @GetMapping
     public String findAll(Model model,
                           @RequestParam(value = "sort", required = false) String sort,
-                          @RequestParam(defaultValue = "0") int page
+                          @RequestParam(defaultValue = "1") int page
     ) {
         Pageable paging = null;
 
         if (sort == null) {
-            paging = PageRequest.of(page == 0 ? page : page - 1, 5);
+            paging = PageRequest.of(page - 1, 3);
         } else {
 
             if (sort.equals("NEWEST"))
-                paging = PageRequest.of(page == 0 ? page : page - 1, 3, Sort.by("createdAt").descending());
+                paging = PageRequest.of(page - 1, 3, Sort.by("createdAt").descending());
             else if (sort.equals("POPULAR"))
-                paging = PageRequest.of(page == 0 ? page : page - 1, 3, Sort.by("viewsNo").descending());
+                paging = PageRequest.of(page - 1, 3, Sort.by("viewsNo").descending());
             else if (sort.equals("VOTES"))
-                paging = PageRequest.of(page == 0 ? page : page - 1, 3, Sort.Direction.ASC, "upvote", "downvote");
+                paging = PageRequest.of(page - 1, 3, Sort.Direction.ASC, "upvote", "downvote");
         }
         List<Question> questions;
         Page<Question> pageQuestion = questionRepo.findAll(paging);
         questions = pageQuestion.getContent();
-        System.out.println(pageQuestion.getTotalPages());
-        System.out.println(questions);
+        model.addAttribute("sort",sort);
         model.addAttribute("questions", questions);
         model.addAttribute("pagequestions", pageQuestion);
 
@@ -140,14 +139,13 @@ public class QuestionController {
     @GetMapping("/tag/{tagName}")
     public String questionWithTag(@PathVariable("tagName") String tagName, Model model, @RequestParam(defaultValue = "0") int page) {
         Tag tag = tagRepo.findByTagName(tagName).orElseThrow(() -> new RuntimeException("User with this email not found: "));
-
         Pageable paging = PageRequest.of(page == 0 ? page : page - 1, 5);
         Page<Question> pageQuestion = questionRepo.searchWithTag(paging, tag);
 
-        List<Question> questions=pageQuestion.getContent();
+        List<Question> questions = pageQuestion.getContent();
         System.out.println(pageQuestion.getTotalPages());
         System.out.println(questions);
-        model.addAttribute("tag",tag);
+        model.addAttribute("tag", tag);
         model.addAttribute("questions", questions);
         model.addAttribute("pagequestions", pageQuestion);
         return "question/withTag";

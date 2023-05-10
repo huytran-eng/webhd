@@ -10,9 +10,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name = "question")
+@Table(name="question")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Question {
@@ -108,19 +109,6 @@ public class Question {
         upvote.remove(user);
     }
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "questionId='" + questionId + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", createdAt=" + createdAt +
-                ", viewsNo=" + viewsNo +
-                ", upvote=" + upvote +
-                ", downvote=" + downvote +
-                ", user=" + user +
-                ", questionPic=" + questionPic +
-                ", tags=" + tags +
-                '}';
-    }
+
+
 }
