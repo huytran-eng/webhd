@@ -93,7 +93,7 @@
                                              th:text="'asked ' + ${question.getFormattedDate(question.createdAt, 'd MMM yy hh:mm')}">
                                         </div>
                                         <a class="text-info"
-                                           th:href="${'/accounts/' + question.user.userId}"
+                                           th:href="${'/user/' + question.user.userId}"
                                            th:text="${question.user.username}"></a>
                                     </div>
                                 </div>

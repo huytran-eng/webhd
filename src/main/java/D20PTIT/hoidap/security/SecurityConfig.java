@@ -32,7 +32,7 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) -> // cho phép người dùng được sử dụng các chức năng tùy theo vị trí
                         authorize.requestMatchers("/tag/add").hasRole("admin")
-                                .requestMatchers("/users").hasAuthority("ADMIN")
+                                .requestMatchers("/user").hasAuthority("ADMIN")
                                 .requestMatchers("/question/add").hasAnyRole("admin", "member")
                                 .requestMatchers("/tag/add").hasRole("admin")
                                 .requestMatchers("/").permitAll()
@@ -46,6 +46,8 @@ public class SecurityConfig {
                                 .requestMatchers("/question/**").permitAll()
                                 .requestMatchers("/image/**").permitAll()
                                 .requestMatchers("/users").hasAuthority("ADMIN")
+                                .requestMatchers("/user/**").permitAll()
+                                .requestMatchers("/update/**").permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

@@ -12,10 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -28,7 +25,6 @@ public class UserController {
     public User createForm() {
         return new User();
     }
-
 
 
     @GetMapping("/register")
@@ -45,6 +41,7 @@ public class UserController {
         userRepo.save(user);
         return "redirect:/login";
     }
+
     @GetMapping("/login")
     public String showLoginForm(Model model) {
 
@@ -55,4 +52,29 @@ public class UserController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/user/{id}")
+    public String getUserById(Model model, @PathVariable String id) {
+        User user = new User();
+        user = userRepo.findByUserId(id);
+        model.addAttribute("user", user);
+        return "user/user";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(Model model, @Valid User user, @PathVariable String id) {
+        System.out.println(user.getUsername());
+        System.out.println(id);
+        User newUser = new User();
+        newUser = userRepo.findByUserId(id);
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setPosition(User.Position.member);
+
+        newUser.setUsername(user.getUsername());
+//        System.out.println(id);
+//        System.out.println(newUser.getEmail());
+        userRepo.save(newUser);
+        return "redirect:/";
+    }
+
 }
